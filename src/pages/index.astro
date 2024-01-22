@@ -1,74 +1,228 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Head from '@/components/Head.astro';
-import { Picture,Image } from 'astro:assets';
-import blur from '/src/assets/img/bg.svg';
-import cover from '/src/assets/img/dev.jpg';
-import Button from '@/components/Button.astro';
+import { getCollection } from 'astro:content';
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Component Imports
+import CallToAction from '../components/CallToAction.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+// Page section components
+import ContactCTA from '../components/ContactCTA.astro';
+import Skills from '../components/Skills.astro';
+
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection('work'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
 ---
-<html lang='en'>
-	<Head title='OV - Web Dev and Design' />
-	<Layout>
-		<!-- HERO -->
-		<section
-			class='grid gap-x-10 gap-y-10 lg:gap-y-0 place-content-center content-center lg:grid-flow-col lg:auto-cols-max lg:mt-[10rem] 2xl:mt-[15rem] mb-[5rem] px-3 lg:px-0 h-full text-white'>
-			<Image
-			src={blur}
-			class='fixed blur-[100px] top-0 bottom-0 left-0 right-0 m-auto h-full w-full object-cover object-center z-[-1]'
-			alt='blur background'
-		/>
 
-			<div
-				class='blur-bg rounded-xl p-4 lg:p-10 mt-[8rem] xs:mt-[10rem] sm:mt-[12rem] md:mt-[10rem] lg:mt-0 w-full max-w-[600px]'>
-				<div>
-					<h1
-						class='text-7xl lg:text-9xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary-0 to-accent-0'>
-						Happy to see you here!
-					</h1>
-				</div>
-
-				<div class='text-xl font-light lg:max-w-6xl mt-5'>
-					<blockquote>
-						Here, you can learn about me, read my blog, and familiarize yourself
-						with my portfolio. Currently, I am studying JavaScript and the Astro
-						Framework, and I plan to study the React library. I am also
-						interested in Qwik and enjoy learning new things. Most importantly,
-						I am passionate about my work.
-					</blockquote>
-				</div>
-			</div>
-			<div>
-				<div
-					class='self-start blur-bg rounded-xl p-4 lg:p-10 w-full max-w-[400px]'>
-					<Picture
-						src={cover}
-						class='mx-auto object-cover rounded-xl'
-						alt='cover'
-						formats={['avif', 'webp']}
-					/>
-					<p class='text-xl font-light tracking-wide mt-5'>
-						You can find this site on GitHub, I'm developing it for my
-						portfolio, as well as for blogging.
-					</p>
-					<div class='mt-5'>
-						<Button
-							text='Check out'
-							link='https://github.com/vratskyi/vratskyi.github.io'
-						/>
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+					title="Bienvenue sur mon Portfolio"
+					tagline="Étudiant en 1re année en BTS SIO SLAM : Services Informatiques aux Organisations option Solutions Logicielles et Applications Métiers, je suis passionné par l'informatique et le développement."
+					align="start"
+				>
+					<div class="roles">
+						<Pill><Icon icon="code" size="1.33em" /> Developpeur</Pill>
 					</div>
+				</Hero>
+
+				<img
+					alt=""
+					width="480"
+					height="620"
+					src="/assets/portrait.jpg"
+				/>
+			</header>
+
+			<Skills />
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section class="section with-background with-cta">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Selected Work</h3>
+					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
 				</div>
-				<div
-					class='mt-5 flex justify-between items-center self-start blur-bg rounded-xl p-4 lg:p-10 w-full max-w-[400px]'>
-					<h3
-						class='text-2xl font-light text-white'>
-						Some good staff:
-					</h3><Button
-						text='Read blog'
-						link='/blog'
-						target='_self'
-					/>
+
+				<div class="cta">
+					<CallToAction href="/work/">
+						View All
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
 				</div>
-			</div>
-		</section>
-	</Layout>
-</html>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
+	}
+
+	.hero img {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.hero img {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: '';
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background:
+			url('/assets/backgrounds/noise.png') top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+	}
+
+	@media (min-width: 50em) {
+		.mention-card {
+			border-radius: 1.5rem;
+			height: 9.5rem;
+		}
+	}
+</style>

@@ -1,32 +1,18 @@
 {
-  "name": "ov-template",
+  "name": "portfolio",
   "type": "module",
-  "version": "0.6.9",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vratskyi/vratskyi.github.io"
-  },
+  "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "css": "tailwindcss -c ./tailwind.config.cjs -i ./src/assets/styles/input.css -o ./public/styles/global.css  --minify --watch"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.0.4",
-    "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.1.0",
-    "sharp": "^0.33.1",
-    "tailwindcss": "^3.4.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "cssnano": "^6.0.1"
-  },
-  "description": "``` npm create astro@latest -- --template minimal ```",
-  "main": "index.js",
-  "author": "Oleksii Vratskyi",
-  "license": "MIT"
+    "@astrojs/check": "^0.4.1",
+    "astro": "^4.2.1",
+    "astro-icon": "^1.0.2",
+    "typescript": "^5.3.3"
+  }
 }
