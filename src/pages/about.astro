@@ -41,9 +41,9 @@ import Hero from "../components/Hero.astro";
 							informatique industrielle - IUT Angers
 						</li>
 						<li>
-							2019-2021 | Bac général - option numérique et science
-							de l'informatique et mathématiques - Lycée Jean
-							Bodin
+							2019-2021 | Bac général - option numérique et
+							science de l'informatique et mathématiques - Lycée
+							Jean Bodin
 						</li>
 					</ul>
 				</div>
@@ -93,7 +93,8 @@ import Hero from "../components/Hero.astro";
 					<p>Projet pro</p>
 					<ul>
 						<li>
-							Hyper U Mûrs-Erigné | Mise en place d’un logiciel de commande (codé en C#) 		
+							Hyper U Mûrs-Erigné | Mise en place d’un logiciel de
+							commande (codé en C#)
 						</li>
 					</ul>
 				</div>
@@ -101,70 +102,97 @@ import Hero from "../components/Hero.astro";
 			<section>
 				<h2 class="section-title">Crédit</h2>
 				<div class="content">
-					<p><a target="_blank" href="https://fr.freepik.com/vecteurs-libre/fond-bureau-moderne-vecteur-conception-bleu-geometrique_18220884.htm#query=background%20website&position=5&from_view=keyword&track=ais&uuid=89b6a1c5-d698-431a-97f7-a4b98dd58777">Image de rawpixel.com sur Freepik</a> </p>
-					<p><a target="_blank" href="https://www.pexels.com/fr-fr/photo/textile-blanc-911738/">Photo de gdtography</a>
+					<a
+						href="https://pixabay.com/fr/users/carmem-49867/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1629980"
+						>Image par Carmem Cândido Rodrigues Carlotinha</a
+					> de <a
+						href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1629980"
+						>Pixabay</a
+					>
+					<a
+						target="_blank"
+						href="https://pixabay.com/fr/users/artsybee-462611/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1018814"
+						><p>Image par Oberholster Venita</p> de <a
+							href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1018814"
+							>Pixabay</a
+						>
+						<a
+							href="https://pixabay.com/fr/users/simon-3/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=76517"
+							>Image par Simon</a
+						> de <a
+							href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=76517"
+							>Pixabay</a
+						>
+					</a>
+					<a
+						href="https://pixabay.com/fr/users/fsweb_de-2764834/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1863504"
+						>Image par fsweb_de</a
+					> de <a
+						href="https://pixabay.com/fr//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1863504"
+						>Pixabay</a
+					>
 				</div>
 			</section>
+
+			<ContactCTA />
 		</main>
-
-		<ContactCTA />
 	</div>
-</BaseLayout>
 
-<style>
-	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
-	}
-
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
-	}
-
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
-	}
-
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
-		transition: text-decoration-color var(--theme-transition);
-	}
-
-	.content :global(a:hover),
-	.content :global(a:focus) {
-		text-decoration-color: currentColor;
-	}
-
-	@media (min-width: 50em) {
+	<style>
 		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
+			display: flex;
+			flex-direction: column;
+			gap: 3.5rem;
 		}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
+		img {
+			margin-top: 1.5rem;
+			border-radius: 1.5rem;
+			box-shadow: var(--shadow-md);
 		}
 
 		section {
-			display: contents;
-			font-size: var(--text-lg);
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			color: var(--gray-200);
 		}
-	}
-</style>
+
+		.section-title {
+			grid-column-start: 1;
+			font-size: var(--text-xl);
+			color: var(--gray-0);
+		}
+
+		.content {
+			grid-column: 2 / 4;
+		}
+
+		.content :global(a) {
+			text-decoration: 1px solid underline transparent;
+			text-underline-offset: 0.25em;
+			transition: text-decoration-color var(--theme-transition);
+		}
+
+		.content :global(a:hover),
+		.content :global(a:focus) {
+			text-decoration-color: currentColor;
+		}
+
+		@media (min-width: 50em) {
+			.about {
+				display: grid;
+				grid-template-columns: 1fr 60% 1fr;
+			}
+
+			.about > :global(:first-child) {
+				grid-column-start: 2;
+			}
+
+			section {
+				display: contents;
+				font-size: var(--text-lg);
+			}
+		}
+	</style>
+</BaseLayout>
