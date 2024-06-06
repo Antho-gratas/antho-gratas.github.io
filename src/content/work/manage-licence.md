@@ -1,8 +1,8 @@
 ---
-title: Plugin de gestion de license et vente de modules
+title: Plugin de gestion de licence et vente de modules
 publishDate: 2023-06-10 00:00:00
 img: /assets/wordpress-1863504_1280.jpg
-img_alt: Plugin de gestion de license et vente de modules
+img_alt: Plugin de gestion de licence et vente de modules
 description: |
 tags:
   - Dev

@@ -1,8 +1,8 @@
 ---
-title: Plugin de gestion de license et vente de modules
+title: Plugin d'amélioration de Wordfence et MainWp
 publishDate: 2024-01-20 00:00:00
 img: /assets/wordfence.jpg
-img_alt: Plugin de gestion de license et vente de modules
+img_alt: Plugin d'amélioration de Wordfence et MainWp
 description: |
 tags:
   - Dev
